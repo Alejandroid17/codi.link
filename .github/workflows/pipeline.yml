@@ -145,4 +145,4 @@ jobs:
           with:
             install: false
             command: npm run test:e2e
-            wait-on: http://localhost:3000
+            wait-on: http://localhost:5000
