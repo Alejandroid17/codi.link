@@ -72,7 +72,6 @@ jobs:
         run: npm run build
 
   install_cypress:
-    needs: [build, install_cypress]
     name: Install Cypress
     runs-on: ubuntu-18.04
     steps:
@@ -100,7 +99,7 @@ jobs:
         run: npx cypress install
 
   e2e:
-      needs: [install_cypress]
+      needs: [build, install_cypress]
       name: End-to-end tests
       runs-on: ubuntu-18.04
       steps:
