@@ -71,13 +71,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: .next
-          path: .next 
-
   install_cypress:
+    needs: [build, install_cypress]
     name: Install Cypress
     runs-on: ubuntu-18.04
     steps:
@@ -131,7 +126,7 @@ jobs:
           run: npm i --ignore-scripts
         
         - name: Start server
-          run: npm run start &
+          run: npm run serve &
         
         - name: Cache Cypress binary
           id: cache-cypress-dependency
