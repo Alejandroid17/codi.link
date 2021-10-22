@@ -71,6 +71,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
+
   install_cypress:
     name: Install Cypress
     runs-on: ubuntu-18.04
@@ -112,6 +118,12 @@ jobs:
           uses: actions/setup-node@v2
           with:
             node-version: '14'
+
+        - name: Download artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: dist
+            path: dist
 
         - name: Cache dependencies
           id: cache-dependencies
